@@ -68,11 +68,11 @@ void ULZAsyncAction_RequestHttpMessage::HandleRequestCompleted(FString ResponseS
 		// The simplest example parsing of the plain JSON.
 		// Here you can expand to fetch your specific layout of values and objects and return
 		// it via a UStruct or separate params in the Completed.Broadcast()
-		if (!JsonObject->TryGetStringField("MOTD", OutString))
+		/*if (!JsonObject->TryGetStringField("MOTD", OutString))
 		{
 			// While response may be successful, we failed to retrieve the string field
 			bSuccess = false;
-		}
+		}*/
 	}
 
 

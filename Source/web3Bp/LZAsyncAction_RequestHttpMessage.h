@@ -13,6 +13,13 @@
 // Event that will be the 'Completed' exec wire in the blueprint node along with all parameters as output pins.
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHttpRequestCompleted, const FString&, MOTD, bool, bSuccess);
 
+USTRUCT()
+struct FNftStruct {
+	GENERATED_BODY()
+	UPROPERTY() FString nftName1;
+	UPROPERTY() FString nftFileUrl1;
+};
+
 /**
  *
  */
