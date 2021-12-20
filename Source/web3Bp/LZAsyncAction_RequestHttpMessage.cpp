@@ -70,7 +70,6 @@ void ULZAsyncAction_RequestHttpMessage::HandleRequestCompleted(FString ResponseS
 	Completed.Broadcast(nftStruct, bSuccess);
 }
 
-
 ULZAsyncAction_RequestHttpMessage* ULZAsyncAction_RequestHttpMessage::AsyncRequestHTTP(UObject* WorldContextObject, FString URL)
 {
 	// Create Action Instance for Blueprint System
