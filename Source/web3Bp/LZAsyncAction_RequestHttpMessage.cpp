@@ -42,8 +42,10 @@ void ULZAsyncAction_RequestHttpMessage::Activate()
 
 void ULZAsyncAction_RequestHttpMessage::HandleRequestCompleted(FString ResponseString, bool bSuccess)
 {
-	FString OutString;
-	FNftStruct nftStruct;
+	//FString OutString;
+	//FNftStruct nftStruct;
+	TArray<FString> nftNames;
+	TArray<FString> nftFileUrls;
 
 	if (bSuccess)
 	{
@@ -62,12 +64,12 @@ void ULZAsyncAction_RequestHttpMessage::HandleRequestCompleted(FString ResponseS
 			FString name = json->GetStringField("name");
 			FString fileUrl = json->GetStringField("file_url");
 
-			nftStruct.names.Add(name);
-			nftStruct.fileUrls.Add(fileUrl);
+			nftNames.Add(name);
+			nftFileUrls.Add(fileUrl);
 		}
 	}
 
-	Completed.Broadcast(nftStruct, bSuccess);
+	Completed.Broadcast(nftNames, nftFileUrls, bSuccess);
 }
 
 ULZAsyncAction_RequestHttpMessage* ULZAsyncAction_RequestHttpMessage::AsyncRequestHTTP(UObject* WorldContextObject, FString URL)

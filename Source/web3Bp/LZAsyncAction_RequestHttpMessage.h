@@ -10,15 +10,16 @@
 #include "Kismet/BlueprintAsyncActionBase.h"
 #include "LZAsyncAction_RequestHttpMessage.generated.h"
 
+/*
 USTRUCT(Blueprintable)
 struct FNftStruct {
 	GENERATED_BODY()
 	UPROPERTY(BlueprintReadWrite) TArray<FString> names;
 	UPROPERTY() TArray<FString> fileUrls;
-};
+};*/
 
 // Event that will be the 'Completed' exec wire in the blueprint node along with all parameters as output pins.
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHttpRequestCompleted, const FNftStruct&, nfts, bool, bSuccess);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FOnHttpRequestCompleted, const TArray<FString>&, nftNames, const TArray<FString>&, nftFileUrls, bool, bSuccess);
 
 /**
  *
