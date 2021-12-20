@@ -43,6 +43,8 @@ void ULZAsyncAction_RequestHttpMessage::Activate()
 void ULZAsyncAction_RequestHttpMessage::HandleRequestCompleted(FString ResponseString, bool bSuccess)
 {
 	FString OutString;
+	FNftStruct nftStruct;
+
 	if (bSuccess)
 	{
 		/* Deserialize object */
@@ -60,23 +62,12 @@ void ULZAsyncAction_RequestHttpMessage::HandleRequestCompleted(FString ResponseS
 			FString name = json->GetStringField("name");
 			FString fileUrl = json->GetStringField("file_url");
 
-			//nftStruct.nftName_1 = name;
-			//nftStruct.nftFileUrl_1 = fileUrl;
-			//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Red, name);
+			nftStruct.names.Add(name);
+			nftStruct.fileUrls.Add(fileUrl);
 		}
-
-		// The simplest example parsing of the plain JSON.
-		// Here you can expand to fetch your specific layout of values and objects and return
-		// it via a UStruct or separate params in the Completed.Broadcast()
-		/*if (!JsonObject->TryGetStringField("MOTD", OutString))
-		{
-			// While response may be successful, we failed to retrieve the string field
-			bSuccess = false;
-		}*/
 	}
 
-
-	Completed.Broadcast(OutString, bSuccess);
+	Completed.Broadcast(nftStruct, bSuccess);
 }
 
 
