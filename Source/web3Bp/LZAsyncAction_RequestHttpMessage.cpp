@@ -6,15 +6,9 @@ void ULZAsyncAction_RequestHttpMessage::Activate()
 {
 	// build GetRequest String
 	// TODO: use *FString::Printf(TEXT("%s"), *String) instead for cleaner look
-	FString Chain = "ethereum";
-	FString NumOfNftsToRead = "10";
-	FString AccountAddr = "0x3dc5ddf5a779d7614abe66f4bd73519c780a7889";
-	FString GetRequestPart1 = "https://api.nftport.xyz/v0/accounts/";
-	FString GetRequestPart2 = "?chain=";
-	FString GetRequestPart3 = "&account_address=";
-	FString GetRequestPart4 = "&page_size=";
-	FString GetRequestPart5 = "&continuation=None&include=metadata";
-	FString GetRequest = GetRequestPart1 + AccountAddr + GetRequestPart2 + Chain + GetRequestPart3 + AccountAddr + GetRequestPart4 + NumOfNftsToRead + GetRequestPart5;
+	FString AccountAddr = "fmnXTt5sUnpcAAWd6gzdrZQKpFan6WPmGZZqDaJHrZC";
+	FString GetRequestPart1 = "https://api.all.art/v1/wallet/";
+	FString GetRequest = GetRequestPart1 + AccountAddr;
 
 	// Create HTTP Request
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = FHttpModule::Get().CreateRequest();
@@ -54,15 +48,15 @@ void ULZAsyncAction_RequestHttpMessage::HandleRequestCompleted(FString ResponseS
 		TSharedRef<TJsonReader<TCHAR>> JsonReader = TJsonReaderFactory<>::Create(ResponseString);
 		FJsonSerializer::Deserialize(JsonReader, JsonObject);
 
-		TArray<TSharedPtr<FJsonValue>> JsonNfts = JsonObject->GetArrayField(TEXT("nfts"));
+		TArray<TSharedPtr<FJsonValue>> JsonNfts = JsonObject->GetArrayField(TEXT("unlistedNfts"));
 
 		for (int i = 0; i < JsonNfts.Num(); i++)
 		{
 			TSharedPtr<FJsonValue> value = JsonNfts[i];
 			TSharedPtr<FJsonObject> json = value->AsObject();
 
-			FString name = json->GetStringField("name");
-			FString fileUrl = json->GetStringField("file_url");
+			FString name = json->GetStringField("Title");
+			FString fileUrl = json->GetStringField("jsonUrl");
 
 			nftNames.Add(name);
 			nftFileUrls.Add(fileUrl);
