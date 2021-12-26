@@ -56,7 +56,7 @@ void ULZAsyncAction_RequestHttpMessage::HandleRequestCompleted(FString ResponseS
 			TSharedPtr<FJsonObject> json = value->AsObject();
 
 			FString name = json->GetStringField("Title");
-			FString fileUrl = json->GetStringField("jsonUrl");
+			FString fileUrl = json->GetStringField("Preview_URL");
 
 			nftNames.Add(name);
 			nftFileUrls.Add(fileUrl);
