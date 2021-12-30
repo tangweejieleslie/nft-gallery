@@ -39,11 +39,14 @@ public:
 	virtual void Activate() override;
 
 	UFUNCTION(BlueprintCallable, meta = (BlueprintInternalUseOnly = "true", Category = "HTTP", WorldContext = "WorldContextObject"))
-		static ULZAsyncAction_RequestHttpMessage* AsyncRequestHTTP(UObject* WorldContextObject, FString URL);
+		static ULZAsyncAction_RequestHttpMessage* AsyncRequestHTTP(UObject* WorldContextObject, FString URL, FString Chain, FString Address);
 
 	UPROPERTY(BlueprintAssignable)
 		FOnHttpRequestCompleted Completed;
 
 	/* URL to send GET request to */
 	FString URL;
+
+	FString Chain;
+	FString Address;
 };
