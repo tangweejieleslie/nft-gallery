@@ -6,7 +6,7 @@ void ULZAsyncAction_RequestHttpMessage::Activate()
 {
 	// build GetRequest String
 	// TODO: use *FString::Printf(TEXT("%s"), *String) instead for cleaner look
-	FString AccountAddr = "fmnXTt5sUnpcAAWd6gzdrZQKpFan6WPmGZZqDaJHrZC";
+	FString AccountAddr = "4HEszrujgYY6PCNq9y9GqN9SYdeszAVsWeEi9YhVHis2"; //"fmnXTt5sUnpcAAWd6gzdrZQKpFan6WPmGZZqDaJHrZC";
 	FString GetRequestPart1 = "https://api.all.art/v1/wallet/";
 	FString GetRequest = GetRequestPart1 + AccountAddr;
 
