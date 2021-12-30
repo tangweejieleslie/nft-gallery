@@ -6,16 +6,16 @@ void ULZAsyncAction_RequestHttpMessage::Activate()
 {
 	// build GetRequest String
 	// TODO: use *FString::Printf(TEXT("%s"), *String) instead for cleaner look
-	FString AccountAddr = "4HEszrujgYY6PCNq9y9GqN9SYdeszAVsWeEi9YhVHis2"; //"fmnXTt5sUnpcAAWd6gzdrZQKpFan6WPmGZZqDaJHrZC";
+	/*FString AccountAddr = "4HEszrujgYY6PCNq9y9GqN9SYdeszAVsWeEi9YhVHis2"; //"fmnXTt5sUnpcAAWd6gzdrZQKpFan6WPmGZZqDaJHrZC";
 	FString GetRequestPart1 = "https://api.all.art/v1/wallet/";
-	FString GetRequest = GetRequestPart1 + AccountAddr;
+	FString GetRequest = GetRequestPart1 + AccountAddr;*/
 
 	// Create HTTP Request
 	TSharedRef<IHttpRequest, ESPMode::ThreadSafe> HttpRequest = FHttpModule::Get().CreateRequest();
 	HttpRequest->SetVerb("GET");
 	HttpRequest->SetHeader("Content-Type", "application/json");
 	HttpRequest->SetHeader("Authorization", "9cf0b50c-3c2b-4e8d-9a28-19987e63d669");
-	HttpRequest->SetURL(GetRequest);
+	HttpRequest->SetURL(URL);
 
 	// Setup Async response
 	HttpRequest->OnProcessRequestComplete().BindLambda([this](FHttpRequestPtr Request, FHttpResponsePtr Response, bool bSuccess)
